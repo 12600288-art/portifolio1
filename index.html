@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucas Emerich · Portfólio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --grad-a: #241468;
+    --grad-b: #4B3ADB;
+    --azul: #2F5CFF;
+    --roxo-texto: #241468;
+    --cinza-texto: #6B6F80;
+    --branco: #FFFFFF;
+    --borda: #E4E6F0;
+    --sombra: 0 20px 40px -20px rgba(36,20,104,0.35);
+    --raio: 16px;
+    --fonte-titulo: 'Playfair Display', Georgia, serif;
+    --fonte-texto: 'Inter', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    font-family: var(--fonte-texto);
+    color: var(--roxo-texto);
+    background: var(--branco);
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  .fundo-gradiente{
+    background: linear-gradient(135deg, var(--grad-a), var(--grad-b));
+    color: var(--branco);
+  }
+
+  .envelope{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ===================== NAV ===================== */
+  .nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 0;
+  }
+
+  .nav .logo{
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+
+  .nav .logo span{
+    display: block;
+    font-weight: 400;
+    font-size: 0.72rem;
+    opacity: 0.75;
+  }
+
+  .nav-links{
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a{
+    font-size: 0.92rem;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+  }
+  .nav-links a:hover{ opacity: 1; }
+
+  .botao-curriculo{
+    background: var(--branco);
+    color: var(--roxo-texto);
+    padding: 0.6rem 1.3rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+  }
+
+  .menu-hamburguer{
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.4rem;
+  }
+  .menu-hamburguer span{
+    width: 22px;
+    height: 2px;
+    background: var(--branco);
+    border-radius: 2px;
+  }
+
+  /* ===================== HERO ===================== */
+  .hero{
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    display: grid;
+    grid-template-columns: 1.3fr 0.9fr;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .hero h1{
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .hero-foto{
+    justify-self: center;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    border: 4px solid rgba(255,255,255,0.5);
+    overflow: hidden;
+    position: relative;
+    display: grid;
+    place-items: center;
+  }
+
+  .hero-foto img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-foto .legenda-foto{
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: 0.75rem;
+    text-align: center;
+    padding: 1rem;
+    color: rgba(255,255,255,0.85);
+  }
+  .hero-foto img[src]:not([src=""]) ~ .legenda-foto{ display: none; }
+
+  /* ===== faixa de contato + skills dentro do gradiente ===== */
+  .faixa-info{
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 1.25rem;
+    margin-top: -1rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .cartao-contato-resumo,
+  .cartao-skills{
+    background: var(--branco);
+    color: var(--roxo-texto);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    padding: 1.4rem 1.5rem;
+  }
+
+  .cartao-contato-resumo h3{
+    margin: 0 0 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  .linha-contato{
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--cinza-texto);
+    margin-bottom: 0.6rem;
+  }
+
+  .linha-contato .icone{
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    background: var(--azul);
+    color: var(--branco);
+  }
+
+  .cartao-skills{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .skill{
+    text-align: center;
+    padding: 0.5rem 0.25rem;
+  }
+
+  .skill .icone-skill{
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    margin: 0 auto 0.6rem;
+    display: grid;
+    place-items: center;
+    color: var(--branco);
+  }
+
+  .skill p{
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--cinza-texto);
+    line-height: 1.3;
+  }
+
+  .skill strong{
+    display: block;
+    font-size: 0.82rem;
+    color: var(--roxo-texto);
+    margin-bottom: 0.2rem;
+  }
+
+  /* ===================== SEÇÃO GENÉRICA ===================== */
+  .secao{
+    padding: 5rem 0;
+  }
+
+  .secao-cabecalho{
+    text-align: center;
+    max-width: 40rem;
+    margin: 0 auto 3rem;
+  }
+
+  .secao-cabecalho .eyebrow{
+    color: var(--azul);
+    font-weight: 600;
+    font-size: 0.8rem;
+    margin: 0 0 0.5rem;
+  }
+
+  .secao-cabecalho h2{
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 2rem;
+    margin: 0 0 0.75rem;
+  }
+
+  .fundo-gradiente .secao-cabecalho h2,
+  .fundo-gradiente .secao-cabecalho p{
+    color: var(--branco);
+  }
+
+  .secao-cabecalho p{
+    color: var(--cinza-texto);
+    font-size: 0.95rem;
+  }
+
+  /* ===================== CONTATO ===================== */
+  .grade-contato{
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 1.5rem;
+  }
+
+  .cartao-info-contato{
+    border: 1.5px dashed var(--azul);
+    border-radius: var(--raio);
+    padding: 1.75rem;
+    background: #F5F7FF;
+  }
+
+  .cartao-info-contato h3{ margin-top: 0; font-size: 1rem; }
+
+  .cartao-formulario{
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    padding: 1.75rem;
+  }
+
+  .cartao-formulario h3{ margin-top: 0; font-size: 1rem; }
+
+  .linha-form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .campo{
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+  }
+
+  .campo label{
+    font-size: 0.78rem;
+    color: var(--cinza-texto);
+  }
+
+  .campo input,
+  .campo textarea{
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 0.7rem 0.85rem;
+    font-family: var(--fonte-texto);
+    font-size: 0.9rem;
+    color: var(--roxo-texto);
+  }
+
+  .campo input:focus,
+  .campo textarea:focus{
+    outline: 2px solid var(--azul);
+    outline-offset: 1px;
+  }
+
+  .botao-enviar{
+    width: 100%;
+    background: var(--azul);
+    color: var(--branco);
+    border: none;
+    border-radius: 8px;
+    padding: 0.85rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+  .botao-enviar:hover{ opacity: 0.9; }
+
+  .mensagem-envio{
+    margin-top: 0.9rem;
+    font-size: 0.85rem;
+    color: var(--azul);
+    display: none;
+  }
+  .mensagem-envio.mostrar{ display: block; }
+
+  /* ===================== PROJETOS ===================== */
+  .grade-projetos{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cartao-projeto{
+    background: var(--branco);
+    border-radius: var(--raio);
+    overflow: hidden;
+    box-shadow: var(--sombra);
+    color: var(--roxo-texto);
+  }
+
+  .capa-projeto{
+    aspect-ratio: 16 / 10;
+    background: #EDEFFA;
+    overflow: hidden;
+  }
+
+  .capa-projeto img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .corpo-projeto{ padding: 1.25rem 1.4rem 1.5rem; }
+
+  .corpo-projeto h3{ margin: 0 0 0.4rem; font-size: 1rem; }
+
+  .corpo-projeto p{
+    margin: 0 0 0.9rem;
+    font-size: 0.86rem;
+    color: var(--cinza-texto);
+  }
+
+  .link-projeto{
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--azul);
+  }
+
+  /* cartão em destaque do último projeto: foto + frase, como o hero */
+  .cartao-projeto-destaque{
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, var(--grad-a), var(--grad-b));
+    color: var(--branco);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .cartao-projeto-destaque .texto-destaque{
+    padding: 2rem 2.25rem;
+  }
+
+  .cartao-projeto-destaque h3{
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin: 0 0 0.5rem;
+  }
+
+  .cartao-projeto-destaque p{
+    margin: 0 0 1rem;
+    opacity: 0.85;
+    font-size: 0.88rem;
+  }
+
+  .cartao-projeto-destaque .foto-destaque{
+    aspect-ratio: 4 / 3;
+    background: rgba(255,255,255,0.1);
+    overflow: hidden;
+  }
+
+  .cartao-projeto-destaque .foto-destaque img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ===================== RODAPÉ ===================== */
+  .rodape{
+    background: #17103F;
+    color: rgba(255,255,255,0.75);
+    padding: 2.5rem 0;
+  }
+
+  .rodape-conteudo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.85rem;
+  }
+
+  .rodape-links{
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* ===================== RESPONSIVO ===================== */
+  @media (max-width: 860px){
+    .hero{ grid-template-columns: 1fr; text-align: center; }
+    .hero-foto{ order: -1; }
+    .faixa-info{ grid-template-columns: 1fr; margin-top: 1.5rem; }
+    .cartao-skills{ grid-template-columns: repeat(2, 1fr); }
+    .grade-contato{ grid-template-columns: 1fr; }
+    .linha-form{ grid-template-columns: 1fr; }
+    .grade-projetos{ grid-template-columns: 1fr; }
+    .cartao-projeto-destaque{ grid-template-columns: 1fr; }
+    .cartao-projeto-destaque .foto-destaque{ order: -1; }
+
+    .nav-links{
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: var(--grad-b);
+      padding: 1rem 1.5rem;
+      gap: 1rem;
+      display: none;
+    }
+    .nav{ position: relative; }
+    .nav-links.aberto{ display: flex; }
+    .menu-hamburguer{ display: flex; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="fundo-gradiente">
+    <div class="envelope">
+
+      <!-- ===== NAV ===== -->
+      <nav class="nav">
+        <div class="logo">
+          Lucas Emerich
+          <span>github.com/l3060289-art</span>
+        </div>
+
+        <ul class="nav-links" id="menuNav">
+          <li><a href="#contato">Contato</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projetos">Projetos</a></li>
+        </ul>
+
+        <button class="botao-curriculo">Meu Currículo</button>
+
+        <button class="menu-hamburguer" id="botaoMenu" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+
+      <!-- ===== HERO ===== -->
+      <section class="hero">
+        <h1>Desenvolvedor apaixonado por criar experiências digitais incríveis!</h1>
+
+        <!-- Espaço reservado para a foto de perfil: troque o src="" pelo caminho da sua foto -->
+        <div class="hero-foto">
+          <img src="lucasfoto.jpg" alt="">
+       
+        </div>
+      </section>
+
+      <!-- ===== FAIXA: contato resumido + skills ===== -->
+      <div class="faixa-info" id="skills">
+        <div class="cartao-contato-resumo">
+          <h3>Informações de Contato</h3>
+
+          <div class="linha-contato">
+            <span class="icone">✉</span>
+            <span>lucasemerich@gmail.com</span>
+          </div>
+          <div class="linha-contato">
+            <span class="icone">☎</span>
+            <span>31 99742-3782</span>
+          </div>
+          <div class="linha-contato">
+            <span class="icone">📍</span>
+            <span>MG · Belo Horizonte</span>
+          </div>
+        </div>
+
+        <div class="cartao-skills">
+          <div class="skill">
+            <div class="icone-skill" style="background:#8657E5;">{ }</div>
+            <strong>C# Development</strong>
+            <p>Linguagem robusta para desenvolvimento back-end</p>
+          </div>
+          <div class="skill">
+            <div class="icone-skill" style="background:#FF7A45;">🌐</div>
+            <strong>HTML</strong>
+            <p>Estrutura sólida para páginas web</p>
+          </div>
+          <div class="skill">
+            <div class="icone-skill" style="background:#2F5CFF;">🎨</div>
+            <strong>CSS</strong>
+            <p>Estilização e design responsivo para interfaces</p>
+          </div>
+          <div class="skill">
+            <div class="icone-skill" style="background:#17103F;">&lt;/&gt;</div>
+            <strong>JavaScript</strong>
+            <p>Programação dinâmica para interatividade web</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== CONTATO ===== -->
+  <section class="secao" id="contato">
+    <div class="envelope">
+      <div class="secao-cabecalho">
+        <p class="eyebrow">FALE COMIGO</p>
+        <h2>Entre em contato comigo!</h2>
+        <p>Tem um projeto em mente ou quer bater um papo? Me mande uma mensagem.</p>
+      </div>
+
+      <div class="grade-contato">
+        <div class="cartao-info-contato">
+          <h3>Informações de Contato</h3>
+          <div class="linha-contato">
+            <span class="icone">✉</span>
+            <span>lucasemerich@gmail.com</span>
+          </div>
+          <div class="linha-contato">
+            <span class="icone">☎</span>
+            <span>31 99742-3782</span>
+          </div>
+          <div class="linha-contato">
+            <span class="icone">📍</span>
+            <span>MG · Belo Horizonte</span>
+          </div>
+        </div>
+
+        <div class="cartao-formulario">
+          <h3>Enviar Mensagem</h3>
+          <form id="formularioContato">
+            <div class="linha-form">
+              <div class="campo">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" placeholder="Seu nome completo">
+              </div>
+              <div class="campo">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" placeholder="voce@email.com">
+              </div>
+            </div>
+            <div class="campo">
+              <label for="assunto">Assunto</label>
+              <input type="text" id="assunto" placeholder="Sobre o que é a mensagem">
+            </div>
+            <div class="campo">
+              <label for="mensagem">Mensagem</label>
+              <textarea id="mensagem" rows="4" placeholder="Escreva sua mensagem"></textarea>
+            </div>
+            <button type="submit" class="botao-enviar">Enviar</button>
+            <p class="mensagem-envio" id="mensagemEnvio">Mensagem enviada! Em breve retorno o contato.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJETOS ===== -->
+  <section class="secao fundo-gradiente" id="projetos">
+    <div class="envelope">
+      <div class="secao-cabecalho">
+        <p class="eyebrow" style="color:#fff; opacity:0.8;">MEU TRABALHO</p>
+        <h2>Meus Projetos</h2>
+        <p>Alguns trabalhos recentes que mostram um pouco do que eu faço.</p>
+      </div>
+
+      <div class="grade-projetos">
+        <article class="cartao-projeto">
+          <div class="capa-projeto">
+            <!-- Espaço reservado para print do projeto -->
+            <img src="emerich burger.png" alt="">
+          </div>
+          <div class="corpo-projeto">
+            <h3>E-commerce App</h3>
+            <p>Aplicação de loja virtual com carrinho, catálogo e checkout.</p>
+            <a href="#" class="link-projeto">Ver projeto →</a>
+          </div>
+        </article>
+
+        <article class="cartao-projeto">
+          <div class="capa-projeto">
+            <!-- Espaço reservado para print do projeto -->
+            <img src="WhatsApp Image 2026-09-21 at 16.17.56.jpeg" alt="">
+          </div>
+          <div class="corpo-projeto">
+            <h3>Landing Page Startup</h3>
+            <p>Página de apresentação focada em conversão para uma startup.</p>
+            <a href="#" class="link-projeto">Ver projeto →</a>
+          </div>
+        </article>
+
+        <article class="cartao-projeto-destaque">
+          <div class="texto-destaque">
+            <h3>Desenvolvedor apaixonado por criar experiências digitais incríveis!</h3>
+            <p>Portfolio Website</p>
+            <a href="#" class="link-projeto" style="color:#fff;">Ver projeto →</a>
+          </div>
+          <div class="foto-destaque">
+            <!-- Espaço reservado para a mesma foto de perfil -->
+            <img src="lucasfoto.jpg" alt="">
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer class="rodape">
+    <div class="envelope rodape-conteudo">
+      <span>Lucas Emerich</span>
+      <ul class="rodape-links">
+        <li><a href="#contato">Contato</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    // Abre/fecha o menu no celular
+    const botaoMenu = document.getElementById('botaoMenu');
+    const menuNav = document.getElementById('menuNav');
+    botaoMenu.addEventListener('click', function () {
+      menuNav.classList.toggle('aberto');
+    });
+
+    // Fecha o menu ao clicar em um link (celular)
+    menuNav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        menuNav.classList.remove('aberto');
+      });
+    });
+
+    // Envio do formulário de contato (sem back-end: apenas confirma visualmente)
+    const formularioContato = document.getElementById('formularioContato');
+    const mensagemEnvio = document.getElementById('mensagemEnvio');
+
+    formularioContato.addEventListener('submit', function (evento) {
+      evento.preventDefault();
+      mensagemEnvio.classList.add('mostrar');
+      formularioContato.reset();
+      setTimeout(function () {
+        mensagemEnvio.classList.remove('mostrar');
+      }, 4000);
+    });
+  </script>
+
+</body>
+</html>
